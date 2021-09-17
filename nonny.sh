@@ -1,0 +1,1 @@
+python run.py --config config/nonny-256.yaml --mode animate --checkpoint ./vox-adv-cpk.pth.tar
