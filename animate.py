@@ -12,6 +12,10 @@ import numpy as np
 
 from sync_batchnorm import DataParallelWithCallback
 
+# FRANKS
+from ffmpy import FFmpeg
+from skimage import img_as_ubyte
+
 
 def normalize_kp(kp_source, kp_driving, kp_driving_initial, adapt_movement_scale=False,
                  use_relative_movement=False, use_relative_jacobian=False):
@@ -93,9 +97,19 @@ def animate(config, generator, kp_detector, checkpoint, log_dir, dataset):
                 visualization = visualization
                 visualizations.append(visualization)
 
-            predictions = np.concatenate(predictions, axis=1)
-            result_name = "-".join([x['driving_name'][0], x['source_name'][0]])
-            imageio.imsave(os.path.join(png_dir, result_name + '.png'), (255 * predictions).astype(np.uint8))
+            # predictions = np.concatenate(predictions, axis=1)
+            # result_name = "-".join([x['driving_name'][0], x['source_name'][0]])
+            # imageio.imsave(os.path.join(png_dir, result_name + '.png'), (255 * predictions).astype(np.uint8))
 
-            image_name = result_name + animate_params['format']
-            imageio.mimsave(os.path.join(log_dir, image_name), visualizations)
+            # image_name = result_name + animate_params['format']
+            # imageio.mimsave(os.path.join(log_dir, image_name), visualizations)
+
+            # FRANKS 
+            # save video with original audio
+
+            selected_video = dataset.initial_dataset.root_dir + '\\' + x['driving_name'][0]
+            reader = imageio.get_reader(selected_video, mode='I', format='FFMPEG')
+            fps = reader.get_meta_data()['fps']
+            
+            imageio.mimsave('temp.mp4', [img_as_ubyte(frame) for frame in predictions], fps=fps)
+            FFmpeg(inputs={'temp.mp4': None, selected_video: None}, outputs={'output.mp4': '-c copy -y'}).run()

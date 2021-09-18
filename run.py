@@ -20,7 +20,13 @@ from train import train
 from reconstruction import reconstruction
 from animate import animate
 
+# FRANKS
+import time
+
 if __name__ == "__main__":
+
+    start = time.time()
+    
     
     if sys.version_info[0] < 3:
         raise Exception("You must use Python 3 or higher. Recommended version is Python 3.7")
@@ -85,3 +91,6 @@ if __name__ == "__main__":
     elif opt.mode == 'animate':
         print("Animate...")
         animate(config, generator, kp_detector, opt.checkpoint, log_dir, dataset)
+
+    end = time.time()
+    print("Done in %s seconds" % (end-start))

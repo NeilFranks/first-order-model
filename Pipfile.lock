@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "88aeb3203fc726d7106438c343296f2be34fc32a83cd7ceae708dbabf3965f12"
+            "sha256": "73477cfb0b9e874eac7471f509ef611ed86ae58ffca9a8cc14ed5e3b9d1024cf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -41,6 +41,13 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2021.9.0"
+        },
+        "ffmpy": {
+            "hashes": [
+                "sha256:757591581eee25b4a50ac9ffb9b58035a2794533db47e0512f53fb2d7b6f9adc"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
         },
         "fsspec": {
             "hashes": [
@@ -482,7 +489,7 @@
                 "sha256:f0aaf657145533824b15f2fd8fde8f8c67fe6c6281088ef588091f03fad90243"
             ],
             "index": "pypi",
-            "version": "==1.7.1"
+            "version": "===1.7.1"
         },
         "torchvision": {
             "hashes": [
